@@ -15,7 +15,7 @@
             --highlight-color: #0056b3;
             --success-color: #28a745;
             --danger-color: #dc3545;
-            --warning-color: #ffc107;
+            --warning-color: #fd7e14;
             --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(0, 0, 0, 0.1);
         }
@@ -142,16 +142,15 @@
             color: var(--highlight-color);
         }
 
-        .two-cols, .three-cols, .four-cols {
+        .two-cols, .three-cols {
             display: grid;
-            gap: 20px;
+            gap: 30px;
             text-align: left;
             margin-top: 20px;
             align-items: start;
         }
         .two-cols { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
         .three-cols { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-        .four-cols { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
         
         .card {
             background-color: #fff;
@@ -206,11 +205,7 @@
             gap: 40px;
             align-items: center;
         }
-        
-        .case-study-visual-grid .text-content {
-            text-align: left;
-        }
-        
+        .case-study-visual-grid .text-content { text-align: left; }
         .case-study-visual-grid h3 {
              font-size: 1.1rem;
              margin-top: 15px;
@@ -219,12 +214,7 @@
         }
         .case-study-visual-grid ul { list-style: none; padding: 0; }
         .case-study-visual-grid li { font-size: 0.9rem; line-height: 1.5; margin-bottom: 8px; }
-        .case-study-visual-grid li::before {
-             position: absolute;
-             left: 0;
-             top: 5px;
-        }
-
+        .case-study-visual-grid li::before { position: absolute; left: 0; top: 5px; }
         .case-study-visual-grid .image-content {
             display: flex;
             justify-content: center;
@@ -241,56 +231,65 @@
             object-fit: contain;
             border-radius: 8px;
         }
-        
         .result-highlight { color: var(--success-color); font-weight: 700; }
         
-        /* New styles for slides 2 and 3 */
-        .problem-card {
+        /* New styles for slides 2 (new 3) and 3 (new 4) */
+        .problem-category-card {
             background: #fff;
             padding: 20px;
             border-radius: 12px;
-            text-align: center;
             border: 1px solid var(--glass-border);
-            border-top: 4px solid var(--danger-color);
+            height: 100%;
         }
-        .problem-card svg {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 10px;
-            fill: var(--danger-color);
+        .problem-category-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--highlight-color);
         }
-        .problem-card h3 {
-            font-size: 1rem;
-            color: var(--primary-text);
+        .problem-category-card svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--highlight-color);
+        }
+        .problem-category-card li::before {
+            content: "⚠️";
+            color: var(--warning-color);
         }
 
-        .solution-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 30px;
-            align-items: center;
-        }
         .solution-col {
             padding: 25px;
             background-color: #fff;
             border-radius: 15px;
             text-align: left;
             height: 100%;
+            border: 1px solid var(--glass-border);
+        }
+        .solution-col h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
         }
         .solution-col svg {
-            width: 48px;
-            height: 48px;
+            width: 32px;
+            height: 32px;
             fill: var(--accent-color);
-            margin-bottom: 15px;
+        }
+        .solution-col li::before {
+            content: "✓";
+            color: var(--success-color);
         }
 
 
         @media (max-width: 768px) {
-            .case-study-visual-grid, .solution-grid {
+            .case-study-visual-grid {
                 grid-template-columns: 1fr;
             }
         }
-        
     </style>
 </head>
 <body>
@@ -300,7 +299,7 @@
         <!-- SLIDE 1: APERTURA -->
         <section class="slide" id="slide-1">
             <div class="content-box">
-                <h2>Ci conosciamo, sapete chi siamo.</h2>
+                <h2></h2>
                 <p style="font-size: 1.2rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">
                      "Siamo un gruppo con competenze diverse ma già concrete. Abbiamo esperienza diretta in azienda e nei reparti. Non ci fermiamo ai numeri, lavoriamo dentro i processi per aiutare le aziende italiane a migliorare <span class="highlight">margini, efficienza e controllo</span>."
                 </p>
@@ -308,66 +307,8 @@
             <div class="slide-counter">1 / 9</div>
         </section>
 
-        <!-- SLIDE 2: IL PROBLEMA (NEW LAYOUT) -->
+        <!-- SLIDE 2: TEAM (MOVED) -->
         <section class="slide" id="slide-2">
-            <div class="content-box">
-                <h2>Il vero problema è il controllo che manca.</h2>
-                <div class="four-cols">
-                    <div class="problem-card">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,64a16,16,0,0,0-16,16v80a16,16,0,0,0,32,0V80A16,16,0,0,0,128,64Zm-8.73-40.23a16,16,0,0,0-15.4,2.4L37.31,76.54A16,16,0,0,0,32.1,91.89l50.4,87.29a16,16,0,0,0,27.8,0l50.4-87.29a16,16,0,0,0-5.21-21.25L135.27,26.17A16,16,0,0,0,119.27,23.77Z"/></svg>
-                        <h3>Consulenza Teorica</h3>
-                        <p>Le aziende si affidano a consulenti che fanno solo analisi senza soluzioni operative.</p>
-                    </div>
-                    <div class="problem-card">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M168,104H88a8,8,0,0,0-7.37,5.1l-16,48A8,8,0,0,0,72,168h96a8,8,0,0,0,7.37-10.9l-16-48A8,8,0,0,0,168,104Zm-40,40a12,12,0,1,1,12-12A12,12,0,0,1,128,144ZM232,80V176a24,24,0,0,1-24,24H48a24,24,0,0,1-24-24V80A24,24,0,0,1,48,56H208A24,24,0,0,1,232,80Zm-16,0a8,8,0,0,0-8-8H48a8,8,0,0,0-8,8v96a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8Z"/></svg>
-                        <h3>Dati Confusi</h3>
-                        <p>Gli strumenti sono frammentati, i dati poco chiari e i KPI non vengono tracciati.</p>
-                    </div>
-                    <div class="problem-card">
-                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M148,116a28,28,0,1,1-28-28A28,28,0,0,1,148,116Zm-20,68H40a8,8,0,0,1-5.66-13.66L80,124.7V104a48,48,0,0,1,88.74-21.31A8,8,0,1,1,153,91.87,32,32,0,0,0,96,104v22.25l-37,42.09A8,8,0,0,1,40,184ZM213.66,170.34A8,8,0,0,0,216,168V88a8,8,0,0,0-16,0v8.7a48,48,0,0,0-82.06,30.9,8,8,0,1,0,15.89,2.29A32,32,0,0,1,160,88a8,8,0,0,0,8-8,8,8,0,0,0-8-8,48,48,0,0,0-48,48,8,8,0,0,0,16,0,32,32,0,0,1,32-32,31.75,31.75,0,0,1,6.4.6A8,8,0,0,0,172,104v64a8,8,0,0,0,5.66,7.66L216,188.75V168a8,8,0,0,0-16,0v22.25l-5.66-6.44a8,8,0,0,0-11.31,11.31l24,24A8,8,0,0,0,224,216a7.92,7.92,0,0,0,5.66-2.34l24-24A8,8,0,0,0,248,176a8,8,0,0,0-14.34-5.66Z"/></svg>
-                        <h3>Mancanza di Monitoraggio</h3>
-                        <p>Le performance non sono monitorate, portando a decisioni "di pancia".</p>
-                    </div>
-                    <div class="problem-card">
-                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,200a8,8,0,0,1-8,8H40a8,8,0,0,1-6.4-12.8l65.83-104A40,40,0,0,1,136,64h8a8,8,0,0,1,0,16h-8a24,24,0,0,0-21.57,12.8L41,192H216A8,8,0,0,1,224,200Z"/></svg>
-                        <h3>Conseguenze</h3>
-                        <p>Il risultato sono sprechi, margini compressi e competitività ridotta.</p>
-                    </div>
-                </div>
-            </div>
-             <div class="slide-counter">2 / 9</div>
-        </section>
-
-        <!-- SLIDE 3: LA SOLUZIONE (NEW LAYOUT) -->
-        <section class="slide" id="slide-3">
-            <div class="content-box">
-                <h2>Niente teoria, solo strumenti e numeri utili al management.</h2>
-                 <div class="solution-grid">
-                    <div class="solution-col" style="background-color: rgba(0, 123, 255, 0.05);">
-                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69,162.34,98.34a8,8,0,0,1,11.32,11.32Z"/></svg>
-                         <h3>Soluzioni Principali</h3>
-                         <p>Forniamo strumenti chiari e concreti per dare al management il pieno controllo.</p>
-                         <ul class="list" style="margin-top:15px;">
-                            <li class="check">Controllo di gestione reale.</li>
-                            <li class="check">Digitalizzazione e dashboard KPI.</li>
-                         </ul>
-                    </div>
-                    <div class="solution-col">
-                        <h3>Ambiti di Consulenza Operativa</h3>
-                        <p>Interveniamo direttamente sui processi chiave per ottimizzare le performance.</p>
-                         <ul class="list" style="margin-top:15px;">
-                            <li class="check">Analisi AS-IS e mappatura criticità.</li>
-                            <li class="check">Supporto certificazioni ISO 9001 e 1090.</li>
-                            <li class="check">Ottimizzazione magazzino e logistica.</li>
-                         </ul>
-                    </div>
-                 </div>
-            </div>
-            <div class="slide-counter">3 / 9</div>
-        </section>
-
-        <!-- SLIDE 4: TEAM -->
-        <section class="slide" id="slide-4">
              <div class="content-box">
                 <h2>Non solo consulenti, siamo imprenditori con esperienza sul campo.</h2>
                 <div class="team-grid">
@@ -392,9 +333,61 @@
                     <p>"Sappiamo cosa succede dentro le aziende e lavoriamo su problemi concreti."</p>
                 </div>
             </div>
-             <div class="slide-counter">4 / 9</div>
+             <div class="slide-counter">2 / 9</div>
         </section>
-        
+
+        <!-- SLIDE 3: IL PROBLEMA (NEW LAYOUT) -->
+        <section class="slide" id="slide-3">
+            <div class="content-box">
+                <h2>Il vero problema è il controllo che manca.</h2>
+                <div class="two-cols">
+                    <div class="problem-category-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M240,112a8,8,0,0,1-8,8H136v96a8,8,0,0,1-16,0V120H24a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H232a8,8,0,0,1,8,8Zm-16-56H40v56H224Z"/></svg>Problemi Comuni nelle Aziende</h3>
+                        <ul class="list">
+                            <li>Dati confusi e strumenti frammentati.</li>
+                            <li>Mancanza di monitoraggio strutturato delle performance.</li>
+                            <li>Decisioni prese "alla cieca", con conseguenze su costi e margini.</li>
+                        </ul>
+                    </div>
+                    <div class="problem-category-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M229.66,82.34l-56-56A8,8,0,0,0,168,24H48A16,16,0,0,0,32,40V216a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V88A8,8,0,0,0,229.66,82.34ZM168,44l36,36H168Z"/></svg>Problemi del Mercato della Consulenza</h3>
+                        <ul class="list">
+                            <li>I consulenti si affidano ad analisi teoriche, senza portare soluzioni operative e concrete.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div class="slide-counter">3 / 9</div>
+        </section>
+
+        <!-- SLIDE 4: LA SOLUZIONE (NEW LAYOUT) -->
+        <section class="slide" id="slide-4">
+            <div class="content-box">
+                <h2>La Nostra Soluzione: Un Approccio Integrato</h2>
+                 <div class="two-cols">
+                    <div class="solution-col">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,72a24,24,0,1,0,24,24A24,24,0,0,0,128,72Zm0,40a16,16,0,1,1,16-16A16,16,0,0,1,128,112Zm88-64H40A16,16,0,0,0,24,64V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48Zm0,16V77.48l-29.7,29.7A40,40,0,0,0,128,128a40,40,0,0,0-58.3,31.43V192H40V153.25A40,40,0,0,0,98.3,94.95l26.23-26.24A15.8,15.8,0,0,0,128,64a16.2,16.2,0,0,0,4.9-.71L160,88V64h56Z"/></svg>Controllo & Dati</h3>
+                        <p>Trasformiamo i numeri in decisioni strategiche.</p>
+                        <ul class="list" style="margin-top:15px">
+                            <li class="check">Controllo di gestione reale.</li>
+                            <li class="check">Dashboard KPI su misura.</li>
+                            <li class="check">Digitalizzazione dei processi.</li>
+                        </ul>
+                    </div>
+                    <div class="solution-col">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M239.81,154.38,208,139.56V96a8,8,0,0,0-8-8H160a8,8,0,0,0-5.66,2.34L128,116.69,101.66,90.34A8,8,0,0,0,96,88H56a8,8,0,0,0-8,8v43.56l-31.81,14.82a8,8,0,0,0-4,11.07,7.85,7.85,0,0,0,1,1.13,8,8,0,0,0,11.07-4L48,154.44V104h44.69l28.34,28.34a8,8,0,0,0,11.31,0L160.69,104H208v50.44l21.81,10.19a8,8,0,0,0,11.07-4A7.85,7.85,0,0,0,239.81,154.38ZM128,129.31,90.34,91.66,64,118V216a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8Zm64,86.69V118l-26.34-26.34L192,64a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v4.31l-32-21.34a8,8,0,0,0-11.8.29,136,136,0,0,0,199.6,183.45,8,8,0,0,0-3.83-14Z"/></svg>Ottimizzazione & Processi</h3>
+                         <p>Entriamo in azienda per migliorare l'efficienza operativa.</p>
+                         <ul class="list" style="margin-top:15px">
+                            <li class="check">Analisi AS-IS e mappatura flussi.</li>
+                            <li class="check">Supporto per certificazioni ISO.</li>
+                            <li class="check">Ottimizzazione logistica interna.</li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+            <div class="slide-counter">4 / 9</div>
+        </section>
+
         <!-- SLIDE 5: CASE STUDY 1 VISUAL -->
         <section class="slide" id="slide-5">
             <div class="content-box">
@@ -411,16 +404,15 @@
                         <ul class="list">
                             <li class="check">Digitalizzazione completa dei processi</li>
                             <li class="check">Creazione di dashboard KPI integrate con automazioni e AI</li>
-                            <li class="check">Controllo centralizzato e visibile a tutto il management</li>
                         </ul>
                         <h3>Risultato concreto:</h3>
                         <ul class="list">
                             <li class="rocket">Fatturato <span class="result-highlight">raddoppiato</span>, senza aumentare le risorse umane</li>
-                            <li class="rocket"><span class="result-highlight">Controllo totale</span> su processi e performance operative</li>
+                            <li class="rocket"><span class="result-highlight">Controllo totale</span> su processi e performance</li>
                         </ul>
                     </div>
                     <div class="image-content">
-                        <img src="https://i.imgur.com/BHRlAIx.png" alt="Dashboard di digitalizzazione processi">
+                        <img src="https://i.imgur.com/BHRlAIx.png" alt="Dashboard di digitalizzazione processi" onerror="this.onerror=null;this.src='https://placehold.co/600x400/eeeeee/cccccc?text=Immagine+Dashboard';">
                     </div>
                 </div>
             </div>
@@ -441,8 +433,7 @@
                         <h3>Cosa abbiamo fatto:</h3>
                         <ul class="list">
                             <li class="check">Riclassificazione completa del bilancio</li>
-                            <li class="check">Creazione di budget operativo e piano industriale personalizzato</li>
-                            <li class="check">Supporto al management per analisi e controllo costante</li>
+                            <li class="check">Creazione di budget operativo e piano industriale</li>
                         </ul>
                         <h3>Risultato concreto:</h3>
                         <ul class="list">
@@ -451,7 +442,7 @@
                         </ul>
                     </div>
                     <div class="image-content">
-                        <img src="https://i.imgur.com/NSDlAZP.png" alt="Esempio di riclassificazione bilancio">
+                        <img src="https://i.imgur.com/NSDlAZP.png" alt="Esempio di riclassificazione bilancio" onerror="this.onerror=null;this.src='https://placehold.co/600x400/eeeeee/cccccc?text=Immagine+Bilancio';">
                     </div>
                 </div>
             </div>
